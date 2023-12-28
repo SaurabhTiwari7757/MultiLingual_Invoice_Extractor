@@ -10,16 +10,9 @@ genai.configure(api_key = os.environ.get('GOOGLE_API_KEY'))
 #func to load genimi pro vision
 model = genai.GenerativeModel('gemini-pro-vision')
 
-# def gemini_get_response(input, image, prompt):
-#     response = model.generate_content(input, image[0],prompt) #in gemini it takes parameters in list
-#     return response.text
-
 def gemini_get_response(input, image, prompt):
-    # Combine input, prompt, and image data into a single string
-    combined_input = f"{prompt}\n{input}\n{image[0]['data'].decode('utf-8')}"
-    response = model.generate_content(combined_input)  # Pass only the combined string
+    response = model.generate_content(input, image[0],prompt) #in gemini it takes parameters in list
     return response.text
-
 
 
 def input_image_details(uploaded_file):
